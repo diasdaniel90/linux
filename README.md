@@ -6,7 +6,7 @@ ssh -i chave.pem suporte@<IP>
 sudo apt update
 sudo apt install nginx
 
-#ADD a seguinte linha "34.68.238.255	4linux.local.com.br" em /etc/hosts no meu notebook
+#ADD a seguinte linha "xx.xx.xx.xx	4linux.local.com.br" em /etc/hosts no meu notebook
 
 #INSTALL PRÉ-REQUISITOS
  sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release
@@ -68,14 +68,11 @@ sudo systemctl restart nginx
 
 docker ps
 
+#COMANDO PARA DESCOBRIR 
 docker logs 0cb46317fd04 2>/dev/null | grep "GENERATED ROOT PASSWORD"
 
 
-docker container run --name appdb -e MYSQL_ROOT_PASSWORD=alura
-
 #CRIANDO OUTRAS DATABASES para o app2 e app3
-
-
 docker exec -i -t appdb mysql -u root -ppassroot
 CREATE DATABASE wordpressdb2;
 GRANT ALL PRIVILEGES ON wordpressdb2.* TO 'wordpressuser'@'%';
@@ -85,9 +82,6 @@ CREATE DATABASE wordpressdb3;
 GRANT ALL PRIVILEGES ON wordpressdb3.* TO 'wordpressuser'@'%';
 FLUSH PRIVILEGES;
 
-
-#DOCKERFILE MARIADB#
-FROM mariadb
 
 
 
