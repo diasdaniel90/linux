@@ -1,0 +1,57 @@
+version: '3.1'
+ 
+services:
+ 
+  wordpress:
+    container_name: app1
+    image: wordpress
+    restart: always
+    ports:
+      - 8081:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpressuser
+      WORDPRESS_DB_PASSWORD: wordpresspass
+      WORDPRESS_DB_NAME: wordpressdb
+    volumes:
+      - ./wordpress:/var/www/html
+ 
+  wordpress2:
+    container_name: app2
+    image: wordpress
+    restart: always
+    ports:
+      - 8082:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpressuser
+      WORDPRESS_DB_PASSWORD: wordpresspass
+      WORDPRESS_DB_NAME: wordpressdb2
+    volumes:
+      - ./wordpress2:/var/www/html
+
+  wordpress3:
+    container_name: app3
+    image: wordpress
+    restart: always
+    ports:
+      - 8083:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpressuser
+      WORDPRESS_DB_PASSWORD: wordpresspass
+      WORDPRESS_DB_NAME: wordpressdb3
+    volumes:
+      - ./wordpress3:/var/www/html
+
+  db:
+    container_name: appdb
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: passroot
+      MYSQL_DATABASE: wordpressdb
+      MYSQL_USER: wordpressuser
+      MYSQL_PASSWORD: wordpresspass
+    volumes:
+      - ./db:/var/lib/mysql
