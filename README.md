@@ -3,7 +3,9 @@
 INICIADO AS 19:30
 
 `chmod 400 chave.pem`
+
 `ssh -i chave.pem suporte@<IP>`
+
 `sudo apt update`
 
 
