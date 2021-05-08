@@ -1,6 +1,10 @@
 # Linux
 ## Desafio 4Linux
-INICIADO AS 19:30
+**INICIADO AS 19:30 até as 23:00 do dia 07/05/2021 - 03h30min**
+
+**DEPOIS DAS 14:00 ATÉ AS 17:30 DO DIA 08/05/2021 03h30min**
+
+Somando 07 horas de dedicação ao desafio 
 
 `chmod 400 chave.pem`
 
@@ -12,6 +16,21 @@ INICIADO AS 19:30
 
 #ADD a seguinte linha "xx.xx.xx.xx	4linux.local.com.br" em /etc/hosts no meu notebook
 
+`nano /etc/hosts`
+
+<ip_app>	  app1.4linux.local.com.br
+
+<ip_app>    app2.4linux.local.com.br
+
+<ip_app>    app3.4linux.local.com.br
+
+Segue os links para acesso
+
+[app1](http://app1.4linux.local.com.br/)
+
+[app2](http://app2.4linux.local.com.br/)
+
+[app3](http://app3.4linux.local.com.br/)
 ### INSTALL PRÉ-REQUISITOS
  `sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release`
 
