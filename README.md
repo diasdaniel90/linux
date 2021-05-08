@@ -51,8 +51,9 @@ INICIADO AS 19:30
 
 
 ## docker-compose.yml 
-<p>banco de dados foi criado em um quarto container</p>
- [docker-compose.yml] (https://github.com/diasdaniel90/linux/blob/main/docker-compose.yml)
+banco de dados foi criado em um quarto container
+
+Ver arquivo [docker-compose.yml](https://github.com/diasdaniel90/linux/blob/main/docker-compose.yml)
 
 `docker-compose up -d`
 
@@ -65,41 +66,61 @@ INICIADO AS 19:30
 
 ### NGINX
 `sudo systemctl enable nginx`
+
 `sudo systemctl restart nginx`
+
 `sudo rm /etc/nginx/sites-enabled/default`
+
 `cd /etc/nginx/sites-available`
+
 `sudo touch app1.4linux.local.com.br`
+
 `sudo touch app2.4linux.local.com.br`
+
 `sudo touch app3.4linux.local.com.br`
+
 
 ### HABILITANDO OS SITES CRIADOS
 
-sudo ln -s /etc/nginx/sites-available/app1.4linux.local.com.br /etc/nginx/sites-enabled/app1.4linux.local.com.br
-sudo ln -s /etc/nginx/sites-available/app2.4linux.local.com.br /etc/nginx/sites-enabled/app2.4linux.local.com.br
-sudo ln -s /etc/nginx/sites-available/app3.4linux.local.com.br /etc/nginx/sites-enabled/app3.4linux.local.com.br
+`sudo ln -s /etc/nginx/sites-available/app1.4linux.local.com.br /etc/nginx/sites-enabled/app1.4linux.local.com.br`
 
-sudo systemctl restart nginx
+`sudo ln -s /etc/nginx/sites-available/app2.4linux.local.com.br /etc/nginx/sites-enabled/app2.4linux.local.com.br`
+
+`sudo ln -s /etc/nginx/sites-available/app3.4linux.local.com.br /etc/nginx/sites-enabled/app3.4linux.local.com.br`
+
+### CONFS NGINX
+VER ARQUIVO [app1.4linux.local.com.br](https://github.com/diasdaniel90/linux/blob/main/app1.4linux.local.com.br)
+
+<code>sudo systemctl restart nginx
+
 sudo cp app1.4linux.local.com.br app2.4linux.local.com.br 
+
 sudo cp app1.4linux.local.com.br app3.4linux.local.com.br 
-sudo systemctl restart nginx
 
-docker ps
+sudo systemctl restart nginx</code>
 
-#COMANDO PARA DESCOBRIR 
-docker logs 0cb46317fd04 2>/dev/null | grep "GENERATED ROOT PASSWORD"
+#### COMANDO PARA DESCOBRIR 
+`docker logs 0cb46317fd04 2>/dev/null | grep "GENERATED ROOT PASSWORD"`
 
 
-#CRIANDO OUTRAS DATABASES para o app2 e app3
-docker exec -i -t appdb mysql -u root -ppassroot
+### CRIANDO OUTRAS DATABASES para o app2 e app3
+
+<code>docker exec -i -t appdb mysql -u root -ppassroot
+
 CREATE DATABASE wordpressdb2;
+
 GRANT ALL PRIVILEGES ON wordpressdb2.* TO 'wordpressuser'@'%';
+
 FLUSH PRIVILEGES;
 
 CREATE DATABASE wordpressdb3;
-GRANT ALL PRIVILEGES ON wordpressdb3.* TO 'wordpressuser'@'%';
-FLUSH PRIVILEGES;
 
-#ALTERADO OS TEMAS DO WORDPRESS DE CADA SITE PP
+GRANT ALL PRIVILEGES ON wordpressdb3.* TO 'wordpressuser'@'%';
+
+FLUSH PRIVILEGES;
+</code>
+
+### ALTERADO OS TEMAS DO WORDPRESS DE CADA SITE PP
 
 
 
