@@ -1,10 +1,13 @@
 # Linux
-###Desafio 4Linux###
+## Desafio 4Linux
 INICIADO AS 19:30
-chmod 400 chave.pem 
-ssh -i chave.pem suporte@<IP>
-sudo apt update
-sudo apt install nginx
+
+`chmod 400 chave.pem`
+`ssh -i chave.pem suporte@<IP>`
+`sudo apt update`
+
+
+sudo apt install nginx`
 
 #ADD a seguinte linha "xx.xx.xx.xx	4linux.local.com.br" em /etc/hosts no meu notebook
 
@@ -82,7 +85,7 @@ CREATE DATABASE wordpressdb3;
 GRANT ALL PRIVILEGES ON wordpressdb3.* TO 'wordpressuser'@'%';
 FLUSH PRIVILEGES;
 
-
+#ALTERADO OS TEMAS DO WORDPRESS DE CADA SITE PP
 
 
 
