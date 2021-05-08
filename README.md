@@ -8,60 +8,72 @@ INICIADO AS 19:30
 
 `sudo apt update`
 
-
-sudo apt install nginx`
+`sudo apt install nginx`
 
 #ADD a seguinte linha "xx.xx.xx.xx	4linux.local.com.br" em /etc/hosts no meu notebook
 
-#INSTALL PRÉ-REQUISITOS
- sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release
-#CERTIFICADO DOCKERT PARA DOWNLOAD
- curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
- #INCREMENTANDO INFORMAÇÕES DO REPOSITÓRIO
- echo \
+### INSTALL PRÉ-REQUISITOS
+ `sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release`
+
+### INSTALL DOCKER
+ `curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg`
+#### INCREMENTANDO INFORMAÇÕES DO REPOSITÓRIO
+ `echo \
   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`
 
-sudo apt-get update
-#INSTALANDO
-sudo apt-get install docker-ce docker-ce-cli containerd.io
-#HABILITANDO OS SERVICES
-sudo systemctl enable docker.service
-sudo systemctl enable containerd.service
-#ADD O USER suporte ao grupo docker para não precisar chamar o sudo
-sudo usermod -aG docker suporte
-#baixando as images a serem utilizadas.
+`sudo apt-get update`
+`sudo apt-get install docker-ce docker-ce-cli containerd.io`
+#### HABILITANDO OS SERVICES
+`sudo systemctl enable docker.service`
 
-docker pull wordpress
-docker pull mariadb
+`sudo systemctl enable containerd.service`
 
-#INSTALANDO O COMPOSE
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+#### ADD O USER suporte ao grupo docker para não precisar chamar o sudo
+`sudo usermod -aG docker suporte`
 
-#CRIANDO DIR PARA ARMAZENAR OS VOLUMES DO CONTAINER 
-mkdir /home/suporte/docker
-#CRIANDO VOLUMES
-docker volume create 
+#### baixando as images a serem utilizadas.
+
+`docker pull wordpress`
+
+`docker pull mariadb`
+
+### INSTALANDO O COMPOSE
+`sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
+`sudo chmod +x /usr/local/bin/docker-compose`
+
+`sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose`
+
+#### CRIANDO DIR PARA ARMAZENAR OS VOLUMES DO CONTAINER 
+`mkdir /home/suporte/docker`
+#### CRIANDO VOLUMES
+`docker volume create` 
 
 
-#CRIADO O ARQUIVOS docker-compose.yml para o banco de dados foi criado um quarto container #VER O ARQUIVO "docker-compose.yml" no github
-docker-compose up -d
+## docker-compose.yml 
+<p>banco de dados foi criado em um quarto container</p>
+ [docker-compose.yml] (https://github.com/diasdaniel90/linux/blob/main/docker-compose.yml)
 
-#RESOLVER MSG DE ERRO DAS DEFINIÇÕES DE LOCALIDADE. 
-sudo apt install locales
-sudo apt-get install --reinstall locales && sudo dpkg-reconfigure locales
+`docker-compose up -d`
 
-#nginx
-sudo systemctl enable nginx
-sudo systemctl restart nginx
-sudo rm /etc/nginx/sites-enabled/default 
-cd /etc/nginx/sites-available
-sudo touch app1.4linux.local.com.br
-sudo touch app2.4linux.local.com.br
-sudo touch app3.4linux.local.com.br
-#HABILITANDO OS SITES CRIADOS
+### RESOLVER MSG DE ERRO DAS DEFINIÇÕES DE LOCALIDADE. 
+`sudo apt install locales`
+
+`sudo apt-get install --reinstall locales`
+
+`sudo dpkg-reconfigure locales`
+
+### NGINX
+`sudo systemctl enable nginx`
+`sudo systemctl restart nginx`
+`sudo rm /etc/nginx/sites-enabled/default`
+`cd /etc/nginx/sites-available`
+`sudo touch app1.4linux.local.com.br`
+`sudo touch app2.4linux.local.com.br`
+`sudo touch app3.4linux.local.com.br`
+
+### HABILITANDO OS SITES CRIADOS
+
 sudo ln -s /etc/nginx/sites-available/app1.4linux.local.com.br /etc/nginx/sites-enabled/app1.4linux.local.com.br
 sudo ln -s /etc/nginx/sites-available/app2.4linux.local.com.br /etc/nginx/sites-enabled/app2.4linux.local.com.br
 sudo ln -s /etc/nginx/sites-available/app3.4linux.local.com.br /etc/nginx/sites-enabled/app3.4linux.local.com.br
